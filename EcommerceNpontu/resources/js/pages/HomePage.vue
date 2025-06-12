@@ -90,12 +90,11 @@
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           <div class="animate-slide-in-left">
             <h1 class="text-4xl md:text-6xl font-bold mb-6 leading-tight">
-              <span class="inline-block animate-fade-in-up" style="animation-delay: 0.2s">Making</span>
-              <span class="inline-block animate-fade-in-up" style="animation-delay: 0.4s"> You</span>
-              <span class="inline-block animate-fade-in-up" style="animation-delay: 0.6s"> Free</span>
-              <span class="inline-block animate-fade-in-up" style="animation-delay: 0.8s"> To</span>
-              <br>
-              <span class="text-[#ffbf00] inline-block animate-fade-in-up animate-glow" style="animation-delay: 1s">Achieve</span>
+                <span class="inline-block animate-fade-in-up" style="animation-delay: 0.2s">Making</span>
+                <span class="inline-block animate-fade-in-up" style="animation-delay: 0.4s"> You</span>
+                <span class="inline-block animate-fade-in-up" style="animation-delay: 0.6s"> Free</span>
+                <span class="inline-block animate-fade-in-up" style="animation-delay: 0.8s"> To</span>
+                <span class="text-[#ffbf00] inline-block animate-fade-in-up " style="animation-delay: 1.0s">Achieve</span>
             </h1>
             <p class="text-xl mb-8 text-green-100 animate-fade-in-up" style="animation-delay: 1.2s">
               Discover premium products and innovative solutions that empower your success. Shop with confidence at Npontu.
