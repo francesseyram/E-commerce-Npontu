@@ -1,0 +1,23 @@
+{
+    "name": "kwame-dako/npontu-ecommerce",
+    "description": "Ecommerce Website",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "KwameDako\\NpontuEcommerce\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Kwame Dako",
+            "email": "147068894+k-daks101@users.noreply.github.com"
+        }
+    ],
+    "minimum-stability": "stable",
+    "require": {
+        "laravel/framework": "^12.17"
+    },
+    "require-dev": {
+        "laravel/breeze": "^2.3"
+    }
+}
