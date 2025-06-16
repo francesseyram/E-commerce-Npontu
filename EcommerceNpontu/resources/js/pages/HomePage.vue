@@ -157,7 +157,7 @@
               
               <div class="relative z-10">
                 <div class="w-16 h-16 bg-[#00850f] rounded-full flex items-center justify-center mb-4 group-hover:bg-[#ffbf00] transition-all duration-500 group-hover:scale-110 group-hover:rotate-12 transform">
-                  <component :is="category.icon" class="h-8 w-8 text-white group-hover:text-black transition-colors duration-300" />
+                  <img :src="category.image" :alt="category.name" class="h-8 w-8 object-contain" />
                 </div>
                 <h3 class="text-xl font-semibold text-gray-900 mb-2 group-hover:text-[#00850f] transition-colors duration-300">{{ category.name }}</h3>
                 <p class="text-gray-600 mb-4">{{ category.description }}</p>
@@ -191,7 +191,7 @@
           >
             <div class="bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-2xl transition-all duration-500 group-hover:-translate-y-6 transform relative">
               <div class="aspect-square bg-gray-100 relative overflow-hidden">
-                <img :src="product.image" :alt="product.name" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
+                <img :src="product.images[0]?.url" :alt="product.name" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
                 
                 <!-- Floating action buttons -->
                 <div class="absolute top-4 right-4 space-y-2 opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-x-4 group-hover:translate-x-0">
@@ -213,12 +213,12 @@
                   <div class="flex text-[#ffbf00]">
                     <Star v-for="i in 5" :key="i" class="h-4 w-4 fill-current hover:scale-125 transition-transform duration-200" />
                   </div>
-                  <span class="text-sm text-gray-500 ml-2">({{ product.reviews }})</span>
+                  <span class="text-sm text-gray-500 ml-2">({{ product.reviews_count }})</span>
                 </div>
                 <div class="flex items-center justify-between">
                   <div class="flex items-center space-x-2">
                     <span class="text-xl font-bold text-gray-900">${{ product.price }}</span>
-                    <span v-if="product.originalPrice" class="text-sm text-gray-500 line-through">${{ product.originalPrice }}</span>
+                    <span v-if="product.original_price" class="text-sm text-gray-500 line-through">${{ product.original_price }}</span>
                   </div>
                   <button 
                     class="bg-[#00850f] text-white px-4 py-2 rounded-lg hover:bg-[#006b0c] transition-all duration-300 hover:scale-105 transform hover:shadow-lg"
@@ -340,86 +340,36 @@ import {
   Instagram
 } from 'lucide-vue-next'
 
-const email = ref('')
+// Props from the HomeController
+const props = defineProps({
+    featuredProducts: {
+        type: Array,
+        required: true
+    },
+    categories: {
+        type: Array,
+        required: true
+    },
+    latestProducts: {
+        type: Array,
+        required: true
+    }
+});
+
+// State
 const scrolled = ref(false)
 const cartBounce = ref(false)
-const cartCount = ref(3)
+const cartCount = ref(0)
+const email = ref('')
 
-// Animated statistics
+// Animated stats
 const animatedStats = ref({
-  products: 0,
-  rating: 0
+    products: 0,
+    rating: 0
 })
 
 // Floating particles
 const particles = ref([])
-
-// Categories data
-const categories = ref([
-  {
-    id: 1,
-    name: 'Electronics',
-    description: 'Latest gadgets and tech',
-    icon: Laptop
-  },
-  {
-    id: 2,
-    name: 'Fashion',
-    description: 'Trendy clothing & accessories',
-    icon: Shirt
-  },
-  {
-    id: 3,
-    name: 'Home & Living',
-    description: 'Furniture & decor',
-    icon: Home
-  },
-  {
-    id: 4,
-    name: 'Sports',
-    description: 'Fitness & outdoor gear',
-    icon: Dumbbell
-  }
-])
-
-const featuredProducts = ref([
-  {
-    id: 1,
-    name: 'Premium Wireless Headphones',
-    price: 199,
-    originalPrice: 249,
-    discount: 20,
-    reviews: 128,
-    image: '/placeholder.svg?height=300&width=300',
-    wishlisted: false
-  },
-  {
-    id: 2,
-    name: 'Smart Fitness Watch',
-    price: 299,
-    reviews: 89,
-    image: '/placeholder.svg?height=300&width=300',
-    wishlisted: false
-  },
-  {
-    id: 3,
-    name: 'Organic Cotton T-Shirt',
-    price: 49,
-    originalPrice: 69,
-    discount: 30,
-    reviews: 156,
-    image: '/placeholder.svg?height=300&width=300',
-    wishlisted: true
-  },
-  {
-    id: 4,
-    name: 'Modern Table Lamp',
-    price: 89,
-    reviews: 67,
-    image: '/placeholder.svg?height=300&width=300',
-    wishlisted: false
-  }
-])
 
 // Initialize floating particles
 const initParticles = () => {
@@ -494,10 +444,8 @@ const handleMouseLeave = (event) => {
 
 // Wishlist toggle
 const toggleWishlist = (productId) => {
-  const product = featuredProducts.value.find(p => p.id === productId)
-  if (product) {
-    product.wishlisted = !product.wishlisted
-  }
+  // Implement wishlist functionality
+  console.log('Toggle wishlist for product:', productId)
 }
 
 // Add to cart with animation
@@ -505,8 +453,8 @@ const addToCart = (product) => {
   cartCount.value++
   cartBounce.value = true
   
-  // Show success message (you can implement a toast notification here)
-  console.log(`Added ${product.name} to cart!`)
+  // Implement add to cart functionality
+  console.log('Add to cart:', product)
 }
 
 // Newsletter subscription
@@ -520,10 +468,8 @@ const subscribeNewsletter = () => {
 
 // Hover sound effect (optional)
 const playHoverSound = () => {
-  // You can add a subtle sound effect here
-  // const audio = new Audio('/hover-sound.mp3')
-  // audio.volume = 0.1
-  // audio.play()
+  // Implement hover sound effect
+  console.log('Play hover sound')
 }
 
 onMounted(() => {
